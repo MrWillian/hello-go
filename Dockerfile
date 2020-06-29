@@ -1,12 +1,13 @@
-FROM golang
+FROM golang as hello-go
 
-ADD . /go/src/wscraper
+LABEL version="1.0.0" description="Hello Full Cycle" maintainer="Willian Marciel<williansoares.dev@gmail.com>"
+
+ADD . /go/src/hello-go
 
 RUN go get golang.org/x/net/html
-RUN go get github.com/go-redis/redis
 
-RUN go install wscraper
+RUN go install hello-go
 
-ENTRYPOINT /go/bin/wscraper
+ENTRYPOINT /go/bin/hello-go
 
 EXPOSE 8080
